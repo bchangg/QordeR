@@ -115,16 +115,42 @@
     "Party Tray C",
     "Spicy Combo"
   ]
-  const menu = [
-    "Appetizer": arr_app,
-    "Tempura": arr_tempura,
-    "Udon": arr_udon,
-    "A La Carte": arr_carte,
-    "Maki": arr_maki,
-    "Temaki": arr_temaki,
-    "Nigiri": arr_nigiri,
-    "Sashimi": arr_sashimi,
-    "Combination": arr_combo
+  const menu = [{
+      name: "Appetizer",
+      items: arr_app
+    },
+    {
+      name: "Tempura",
+      items: arr_tempura
+    },
+    {
+      name: "Udon",
+      items: arr_udon
+    },
+    {
+      name: "A La Carte",
+      items: arr_carte
+    },
+    {
+      name: "Maki",
+      items: arr_maki
+    },
+    {
+      name: "Temaki",
+      items: arr_temaki
+    },
+    {
+      name: "Nigiri",
+      items: arr_nigiri
+    },
+    {
+      name: "Sashimi",
+      items: arr_sashimi
+    },
+    {
+      name: "Combination",
+      items: arr_combo
+    }
   ]
 
   module.exports = { menu };
