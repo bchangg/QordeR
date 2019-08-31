@@ -29,6 +29,10 @@ app.get('*', (req,res) =>{
     res.send("nah")
 });
 
+app.post('/admin', (req, res) => {
+  res.redirect('/restaurant')
+})
+
 const port = process.env.PORT || 5000;
 app.listen(port);
 

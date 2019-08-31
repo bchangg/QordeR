@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 const axios = require('axios');
-import {navigate} from "hookrouter";
+import { navigate } from "hookrouter";
 // import routes from "../router";
 
-export default function(props){
+export default function(props) {
   const [order, setOrder] = useState("");
 
   const sendOrder = () => {
@@ -14,11 +14,11 @@ export default function(props){
     )
   }
 
-  return(
+  return (
     <form onSubmit={event => event.preventDefault()}>
     Menu Item:<br></br>
-    <input 
-    type="text" 
+    <input
+    type="text"
     name="Menu"
     onChange={event => setOrder(event.target.value)}
     ></input>
