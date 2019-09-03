@@ -1,156 +1,553 @@
-  const arr_app = [
-    "Miso Soup",
-    "House Green Salad",
-    "Gyoze", "Edamame",
-    "Harumaki",
-    "Seaweed Salad",
-    "Agedashi Tofu",
-    "Sunomono Salad",
-    "Chicken Karage",
-    "Soft Shell Crab",
-    "Tuna Tataki",
-    "Potato Croquette",
-    "Tuna Carppachio"
-  ]
-  const arr_tempura = [
-    "Prawn Tempura",
-    "Yam Tempura",
-    "Vegetable Tempura",
-    "Assorted Tempura",
-    "Appetizer Tempura",
-    "Sweet Potato Tempura"
-  ]
-  const arr_udon = [
-    "Plain Udon",
-    "Beef Udon",
-    "Chicken Udon",
-    "Seafood Udon",
-    "Beef Yakiudon",
-    "Chicken Yakiudon",
-    "Seafood Yakiudon",
-    "Nabeyaki Udon"
-  ]
-  const arr_carte = [
-    "Chicken Teriyaki",
-    "Beef Teriyaki",
-    "Chicken Curry",
-    "Beef Curry",
-    "Chicken Teriyaki Donburi",
-    "Beef Teriyaki Donburi",
-    "Sable Fish",
-    "Unagi Donburi"
-  ]
-  const arr_maki = [
-    "Kappa Roll",
-    "Oshinko Roll",
-    "Salmon Roll",
-    "Tuna Roll",
-    "Negitoro Roll",
-    "California Roll",
-    "Salmon Avocado Roll",
-    "Yam Tempura Roll",
-    "BC Roll",
-    "Dynamite Roll",
-    "Mango Roll",
-    "Philadelphia Roll",
-    "Unagi Roll",
-    "Chopped Scallop Roll",
-    "Spicy Salmon Roll",
-    "Spicy Tuna Roll"
-  ]
-  const arr_temaki = [
-    "Tuna Cone",
-    "Salmon Cone",
-    "Chopped Scallop Cone",
-    "Spicy Tuna Cone",
-    "Spicy Salmon Cone",
-    "Spicy Chopped Scallop Cone"
-  ]
-  const arr_nigiri = [
-    "Inari",
-    "Tamago",
-    "Hokkigai",
-    "Wakame",
-    "Tuna",
-    "Salmon",
-    "Sockeye Salmon",
-    "Masago",
-    "Saba",
-    "Ebi",
-    "Chopped Scallop",
-    "Tobiko",
-    "Tai",
-    "Ika",
-    "Toro",
-    "Tobiko & Quall Egg",
-    "Smoke Salmon",
-    "Tako",
-    "Amaebi",
-    "Hotategai",
-    "Unagi",
-    "Ikura",
-    "Hamachi",
-    "Red Tuna",
-    "Uni"
-  ]
-  const arr_sashimi = [
-    "Salmon Sashimi",
-    "Tuna Sashimi",
-    "Spicy Salmon Sashimi",
-    "Spicy Tuna Sashimi",
-    "Tuna & Salmon Sashimi",
-    "Sockeye Salmon Sashimi",
-    "Hokkigai Sashimi",
-    "Toro Sashimi",
-    "Tako Sashimi",
-    "Amaebi Sashimi",
-    "Hamachi Sashimi",
-    "Assorted Sashimi",
-    "Red Tuna Sashimi",
-    "Uni Sashimi"
-  ]
-  const arr_combo = [
-    "Party Tray A",
-    "Party Tray B",
-    "Party Tray C",
-    "Spicy Combo"
-  ]
-  const menu = [{
-      name: "Appetizer",
-      items: arr_app
-    },
-    {
-      name: "Tempura",
-      items: arr_tempura
-    },
-    {
-      name: "Udon",
-      items: arr_udon
-    },
-    {
-      name: "A La Carte",
-      items: arr_carte
-    },
-    {
-      name: "Maki",
-      items: arr_maki
-    },
-    {
-      name: "Temaki",
-      items: arr_temaki
-    },
-    {
-      name: "Nigiri",
-      items: arr_nigiri
-    },
-    {
-      name: "Sashimi",
-      items: arr_sashimi
-    },
-    {
-      name: "Combination",
-      items: arr_combo
-    }
-  ]
+const arr_app = [
+  {
+    name: "Miso Soup",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "House Green Salad",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Gyoze",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Edamame",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Harumaki",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Seaweed Salad",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Agedashi Tofu",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Sunomono Salad",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Chicken Karage",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Soft Shell Crab",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Tuna Tataki",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Potato Croquette",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Tuna Carppachio",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  }
+];
+const arr_tempura = [
+  {
+    name: "Prawn Tempura",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Yam Tempura",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Vegetable Tempura",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Assorted Tempura",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Appetizer Tempura",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Sweet Potato Tempura",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  }
+];
+const arr_udon = [
+  {
+    name: "Plain Udon",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Beef Udon",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Chicken Udon",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Seafood Udon",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Beef Yakiudon",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Chicken Yakiudon",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Seafood Yakiudon",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Nabeyaki Udon",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  }
+];
+const arr_carte = [
+  {
+    name: "Chicken Teriyaki",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Beef Teriyaki",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Chicken Curry",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Beef Curry",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Chicken Teriyaki Donburi",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Beef Teriyaki Donburi",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Sable Fish",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Unagi Donburi",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  }
+];
+const arr_maki = [
+  {
+    name: "Kappa Roll",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Oshinko Roll",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Salmon Roll",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Tuna Roll",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Negitoro Roll",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "California Roll",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Salmon Avocado Roll",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Yam Tempura Roll",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "BC Roll",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Dynamite Roll",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Mango Roll",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Philadelphia Roll",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Unagi Roll",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Chopped Scallop Roll",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Spicy Salmon Roll",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Spicy Tuna Roll",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  }
+];
+const arr_temaki = [
+  {
+    name: "Tuna Cone",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Salmon Cone",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Chopped Scallop Cone",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Spicy Tuna Cone",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Spicy Salmon Cone",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Spicy Chopped Scallop Cone",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  }
+];
+const arr_nigiri = [
+  {
+    name: "Inari",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Tamago",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Hokkigai",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Wakame",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Tuna",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Salmon",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Sockeye Salmon",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Masago",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Saba",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Ebi",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Chopped Scallop",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Tobiko",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Tai",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Ika",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Toro",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Tobiko & Quall Egg",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Smoked Salmon",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Tako",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Amaebi",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Hotategai",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Unagi",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Ikura",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Hamachi",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Red Tuna",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Uni",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  }
+];
+const arr_sashimi = [
+  {
+    name: "Salmon Sashimi",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Tuna Sashimi",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Spicy Salmon Sashimi",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Spicy Tuna Sashimi",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Tuna & Salmon Sashimi",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Sockeye Salmon Sashimi",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Hokkigai Sashimi",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Toro Sashimi",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Tako Sashimi",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Amaebi Sashimi",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Hamachi Sashimi",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Red Tuna Sashimi",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Uni Sashimi",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  }
+];
+const arr_combo = [
+  {
+    name: "Party Tray A",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Party Tray B",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Party Tray C",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  },
+  {
+    name: "Spicy Combo",
+    price_cents: 100,
+    image: "https://storage.googleapis.com/gen-atmedia/3/2007/04/c55204e2ab4b5754ceeaf955acd32d2fd8f91524.jpeg",
+  }
+];
+const menu = [
+  {
+    category: "Appetizer",
+    items: arr_app
+  },
+  {
+    category: "Tempura",
+    items: arr_tempura
+  },
+  {
+    category: "Udon",
+    items: arr_udon
+  },
+  {
+    category: "Carte",
+    items: arr_carte
+  },
+  {
+    category: "Maki",
+    items: arr_maki
+  },
+  {
+    category: "Temaki",
+    items: arr_temaki
+  },
+  {
+    category: "Nigiri",
+    items: arr_nigiri
+  },
+  {
+    category: "Sashimi",
+    items: arr_sashimi
+  },
+  {
+    category: "Combo",
+    items: arr_combo
+  }
+]
 
-  module.exports = { menu };
+module.exports = { menu };

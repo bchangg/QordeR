@@ -1,21 +1,13 @@
-import React, { useState, Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import ListSubheader from "@material-ui/core/ListSubheader";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-// import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import Collapse from "@material-ui/core/Collapse";
+import { List, ListSubheader, ListItem, ListItemIcon, ListItemText, Collapse, Button, ButtonGroup } from "@material-ui/core"
+import { ExpandLess, ExpandMore } from "@material-ui/icons"
 import InboxIcon from "@material-ui/icons/MoveToInbox";
-// import DraftsIcon from "@material-ui/icons/Drafts";
-// import SendIcon from "@material-ui/icons/Send";
-import ExpandLess from "@material-ui/icons/ExpandLess";
-import ExpandMore from "@material-ui/icons/ExpandMore";
-// import StarBorder from "@material-ui/icons/StarBorder";
-import Item from "./Item.js"
-// import './Menu.css'
 
-import { menu } from "../fakeDb/menu.js";
+import Item from "./Item.js";
+import Cart from "./Cart.js";
+
+import { menu } from "../fakeDb/menu"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -28,166 +20,94 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 const orderList = {};
-
-// fake datas
-const arr_app = [
-  "Miso Soup",
-  "House Green Salad",
-  "Gyoze",
-  "Edamame",
-  "Harumaki",
-  "Seaweed Salad",
-  "Agedashi Tofu",
-  "Sunomono Salad",
-  "Chicken Karage",
-  "Soft Shell Crab",
-  "Tuna Tataki",
-  "Potato Croquette",
-  "Tuna Carppachio"
-];
-const arr_tempura = [
-  "Prawn Tempura",
-  "Yam Tempura",
-  "Vegetable Tempura",
-  "Assorted Tempura",
-  "Appetizer Tempura",
-  "Sweet Potato Tempura"
-];
-const arr_udon = [
-  "Plain Udon",
-  "Beef Udon",
-  "Chicken Udon",
-  "Seafood Udon",
-  "Beef Yakiudon",
-  "Chicken Yakiudon",
-  "Seafood Yakiudon",
-  "Nabeyaki Udon"
-];
-const arr_carte = [
-  "Chicken Teriyaki",
-  "Beef Teriyaki",
-  "Chicken Curry",
-  "Beef Curry",
-  "Chicken Teriyaki Donburi",
-  "Beef Teriyaki Donburi",
-  "Sable Fish",
-  "Unagi Donburi"
-];
-
-const arr_maki = [
-  "Kappa Roll",
-  "Oshinko Roll",
-  "Salmon Roll",
-  "Tuna Roll",
-  "Negitoro Roll",
-  "California Roll",
-  "Salmon Avocado Roll",
-  "Yam Tempura Roll",
-  "BC Roll",
-  "Dynamite Roll",
-  "Mango Roll",
-  "Philadelphia Roll",
-  "Unagi Roll",
-  "Chopped Scallop Roll",
-  "Spicy Salmon Roll",
-  "Spicy Tuna Roll"
-];
-
-const arr_temaki = [
-  "Tuna Cone",
-  "Salmon Cone",
-  "Chopped Scallop Cone",
-  "Spicy Tuna Cone",
-  "Spicy Salmon Cone",
-  "Spicy Chopped Scallop Cone"
-];
-const arr_nigiri = [
-  "Inari",
-  "Tamago",
-  "Hokkigai",
-  "Wakame",
-  "Tuna",
-  "Salmon",
-  "Sockeye Salmon",
-  "Masago",
-  "Saba",
-  "Ebi",
-  "Chopped Scallop",
-  "Tobiko",
-  "Tai",
-  "Ika",
-  "Toro",
-  "Tobiko & Quall Egg",
-  "Smoke Salmon",
-  "Tako",
-  "Amaebi",
-  "Hotategai",
-  "Unagi",
-  "Ikura",
-  "Hamachi",
-  "Red Tuna",
-  "Uni"
-];
-
-const arr_sashimi = [
-  "Salmon Sashimi",
-  "Tuna Sashimi",
-  "Spicy Salmon Sashimi",
-  "Spicy Tuna Sashimi",
-  "Tuna & Salmon Sashimi",
-  "Sockeye Salmon Sashimi",
-  "Hokkigai Sashimi",
-  "Toro Sashimi",
-  "Tako Sashimi",
-  "Amaebi Sashimi",
-  "Hamachi Sashimi",
-  "Assorted Sashimi",
-  "Red Tuna Sashimi",
-  "Uni Sashimi"
-];
-
-const arr_combo = [
-  "Party Tray A",
-  "Party Tray B",
-  "Party Tray C",
-  "Spicy Combo"
-];
+let rows = [];
 
 export default function Menu() {
-  // Menu Components
-
+  const [state, setState] = useState("");
+  const [cart, setCart] = React.useState(false);
+  const [orderLength, setOrderLength] = React.useState(0);
   const classes = useStyles();
-  const [state, setState] = useState([]);
+  function createData(name, quantity, price) {
+    return { name, quantity, price };
+  }
+  const makeRows = function() {
+    const items = Object.keys(orderList);
+    const quantity = Object.values(orderList);
+    rows = []
+    for (let i = 0; i < items.length; i++) {
+      rows.push(createData(items[i], quantity[i]));
+    }
+    setCart(true)
+  }
 
-  const menuList = menu.map((category) => {
+  // renders out a list of menu categories and items
+  // data structure is located in fakeDb/menu.js
+  // expects menu to be something like:
+  //   menu = {
+  //   category: "string",
+  //   items: array of [
+  //     name: "string",
+  //     price_cents: int,
+  //     image: 'url string'
+  //   ]
+  // }
+  // can update the items to just old an array of ids later
+  const menuList = menu.map((entry, index) => {
     return (
       <Fragment>
-        <ListItem button onClick={() => state === category.name ? setState(null) : setState(category.name)}>
+        <ListItem key={index} button onClick={() =>
+          state === entry.category ? setState(null) : setState(entry.category)
+        }>
+          <ListItemIcon>
             <InboxIcon />
-          <ListItemText primary={category.name} />
-          {category.name === state ? <ExpandMore /> : <ExpandLess />}
+          </ListItemIcon>
+
+          <ListItemText primary={entry.category} />
+          {state === entry.category ? <ExpandMore /> : <ExpandLess />}
         </ListItem>
-        <Collapse in={state === category.name} timeout="auto" unmountOnExit>
-          {category.items.map((item) => {
-            return <Item name={item}/>
+
+        <Collapse in={state === entry.category} timeout="auto" unmountOnExit>
+          {entry.items.map(item => {
+            return (
+              <Item
+                setOrderLength={setOrderLength}
+                order={orderList}
+                name={item.name}
+                price={item.price_cents}
+                image={item.image}
+              />
+            );
           })}
         </Collapse>
       </Fragment>
     )
   })
 
-  return (
-    <List
-      component="nav"
-      aria-labelledby="nested-list-subheader"
-      subheader={
-        <ListSubheader component="div" id="nested-list-subheader">
-          Menu
-        </ListSubheader>
-      }
-      className={classes.root}
-    >
-    {menuList}
-    </List>
-  );
+  if (!cart) {
+    // if Cart state is false it will render menu list
+    return (
+      <div class="d-flex justify-content-center align-items-baseline">
+        <List
+          component="nav"
+          aria-labelledby="nested-list-subheader"
+          subheader={
+            <ListSubheader component="div" id="nested-list-subheader">
+              Menu
+            </ListSubheader>
+          }
+          className={classes.root}
+        >
+        {menuList}
+            <ButtonGroup fullWidth aria-label="full width outlined button group">
+             <Button onClick={() => makeRows()}>Checkout {orderLength}</Button>
+           </ButtonGroup>
+        </List>
+      </div>
+    );
+  } else {
+    // if cart state is true, it will render cart page
+    return (
+        <Cart setOrderLength={setOrderLength} setCart={()=> setCart()} order={orderList} rows={rows} />
+    );
+  }
 }
