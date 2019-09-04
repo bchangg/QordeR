@@ -46,7 +46,7 @@ function decrementer(name, order, row) {
     row["quantity"] = i.value;
   }
 }
-[2,3]
+
 export default function Cart(props) {
   const [rows, setRows] = useState(props.rows)
   const deleteItem = function(index) {
@@ -133,6 +133,7 @@ export default function Cart(props) {
         </Paper>
         <Button onClick={() => console.log(rows)}>Place Order</Button>
         <Button onClick={() => clear()}>Clear Cart</Button>
+        <Button onClick={() => console.log("hi")}> hi </Button>
       </div>
     </div>
   );
