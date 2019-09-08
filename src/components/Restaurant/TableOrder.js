@@ -27,7 +27,7 @@ export default function TableOrder(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {Array.isArray(props.items) && props.items.length > 0 ? props.items.map((item) => {
+          {Array.isArray(props.orderItems.data) && props.orderItems.data.length > 0 ? props.orderItems.data.map((item) => {
             return (
               <TableOrderItem item={item}/>
             )

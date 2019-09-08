@@ -3,6 +3,7 @@ import React from 'react';
 import { Paper, Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core';
 
 export default function Tables(props) {
+  console.log(props.incomplete);
   return (
     <Paper className={props.classes.list}>
       <Table size='small'>
@@ -24,7 +25,7 @@ export default function Tables(props) {
                   {table.id}
                 </TableCell>
                 <TableCell>
-                  {table.completed === false ? <span class="badge badge-pill badge-danger">Waiting</span> : <span class="badge badge-pill badge-success">Empty</span>}
+                  {table.completed === false ? <span class="badge badge-pill badge-warning">Busy</span> : <span class="badge badge-pill badge-success">Empty</span>}
                 </TableCell>
               </TableRow>
             )

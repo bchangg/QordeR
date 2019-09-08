@@ -31,7 +31,10 @@ export default function Restaurant(props) {
   const [state, setState] = useState({
     show: TABLES,
     tables: [],
-    orderItems: []
+    orderItems: {
+      incomplete: null,
+      data: []
+    },
   })
 
   const [cookies] = useCookies(['user']);
@@ -71,12 +74,18 @@ export default function Restaurant(props) {
         orderItems: []
       });
     });
-    axios.get(`/api/getActiveOrderItems/${currentTable}`)
+    axios.get(`/api/getActiveTableItems/${currentTable}`)
       .then((response) => {
+        console.log(response.data);
         setState((currentState) => {
           return ({
             ...currentState,
-            orderItems: response.data
+            orderItems: {
+              incomplete: Array.isArray(response.data) && response.data.filter((entry) => {
+                return !entry.time_completed;
+              }).length,
+              data: response.data
+            }
           });
         });
       });
@@ -85,8 +94,9 @@ export default function Restaurant(props) {
   const renderTablePage = function() {
     return (
       <div class="d-flex flex-column justify-content-between">
-        <Tables currentTable={currentTable} setCurrentTable={setCurrentTable} tables={state.tables} classes={classes}/>
-        {currentTable && <TableOrder currentTable={currentTable} items={state.orderItems} classes={classes}/>}
+        <Tables incomplete={state.orderItems.incomplete} currentTable={currentTable} setCurrentTable={setCurrentTable} tables={state.tables} classes={classes}/>
+        <br/>
+        {currentTable && <TableOrder currentTable={currentTable} orderItems={state.orderItems} classes={classes}/>}
       </div>
     )
   };
