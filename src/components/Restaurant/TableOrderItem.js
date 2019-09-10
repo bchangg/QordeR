@@ -63,11 +63,42 @@ export default function TableOrderItem(props) {
     )
   }
 
+  const formatDate = function(dateString) {
+    const date = new Date(dateString);
+    // const day = date.getDay();
+    // switch (day) {
+    //   case 0:
+    //     result += 'Sunday';
+    //     break;
+    //   case 1:
+    //     result += 'Monday';
+    //     break;
+    //   case 2:
+    //     result += 'Tuesday';
+    //     break;
+    //   case 3:
+    //     result += 'Wednesday';
+    //     break;
+    //   case 4:
+    //     result += 'Thursday';
+    //     break;
+    //   case 5:
+    //     result += 'Friday';
+    //     break;
+    //   case 6:
+    //     result += 'Saturday';
+    //     break;
+    //   default:
+    //     result = '';
+    // }
+    return `${(date.getHours() < 10 ? '0' : '') + date.getHours()}:${(date.getMinutes() < 10 ? '0' : '') + date.getMinutes()}:${(date.getSeconds() < 10 ? '0' : '') + date.getSeconds()}`
+  }
+
   return (
     <TableRow>
     <TableCell>{props.item.item_name}</TableCell>
     <TableCell>{props.item.quantity}</TableCell>
-    <TableCell>{props.item.time_ordered}</TableCell>
+    <TableCell>{formatDate(props.item.time_ordered)}</TableCell>
     <TableCell>{renderStatusBadge()}</TableCell>
     <TableCell>{renderButton(props.item)}</TableCell>
     </TableRow>
