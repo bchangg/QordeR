@@ -3,11 +3,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import { List, ListSubheader, ListItem, ListItemIcon, ListItemText, Collapse, Button, ButtonGroup } from "@material-ui/core"
 import { ExpandLess, ExpandMore } from "@material-ui/icons"
 import InboxIcon from "@material-ui/icons/MoveToInbox";
-import { menu } from "fakeDb/menu"
-
 import Item from "components/Menu/Item";
 import Cart from "components/Menu/Cart";
 
+import { menu } from "fakeDb/menu"
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
@@ -19,27 +18,25 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 const orderList = {};
-let rows = [];
-
 export default function Menu() {
   const [state, setState] = useState("");
+  const [rows, setRows] = useState([])
   const [cart, setCart] = React.useState(false);
   const [orderLength, setOrderLength] = React.useState(0);
   const classes = useStyles();
-
   function createData(name, quantity, price) {
     return { name, quantity, price };
   }
   const makeRows = function() {
     const items = Object.keys(orderList);
     const quantity = Object.values(orderList);
-    rows = []
+    let tempRows = []
     for (let i = 0; i < items.length; i++) {
-      rows.push(createData(items[i], quantity[i]));
+      tempRows.push(createData(items[i], quantity[i]));
     }
+    setRows([...tempRows])
     setCart(true)
   }
-
   // renders out a list of menu categories and items
   // data structure is located in fakeDb/menu.js
   // expects menu to be something like:
@@ -52,6 +49,7 @@ export default function Menu() {
   //   ]
   // }
   // can update the items to just old an array of ids later
+
   const menuList = menu.map((entry, index) => {
     return (
       <Fragment>
@@ -59,13 +57,13 @@ export default function Menu() {
           state === entry.category ? setState(null) : setState(entry.category)
         }>
           <ListItemIcon>
-            <InboxIcon />
+            <img src="https://mikurestaurant.com/wp-content/uploads/2018/05/MD-Sashimi-Platter-4-1-495x400.jpg"
+            style={{width:"33px", borderRadius:"30px"}}
+            />
           </ListItemIcon>
-
           <ListItemText primary={entry.category} />
           {state === entry.category ? <ExpandMore /> : <ExpandLess />}
         </ListItem>
-
         <Collapse in={state === entry.category} timeout="auto" unmountOnExit>
           {entry.items.map(item => {
             return (
@@ -82,32 +80,48 @@ export default function Menu() {
       </Fragment>
     )
   })
-
   if (!cart) {
     // if Cart state is false it will render menu list
     return (
-      <div class="d-flex justify-content-center align-items-baseline">
-        <List
-          component="nav"
-          aria-labelledby="nested-list-subheader"
-          subheader={
-            <ListSubheader component="div" id="nested-list-subheader">
-              Menu
-            </ListSubheader>
-          }
+      <div>
+        <div>
+          <img
+          style={{width: "100%", height: "100%", zindex:-1}}
+          src="https://cdn.vox-cdn.com/thumbor/CHCiw8xdogCBnB12TSRvpo4VZMY=/0x0:1000x667/1200x900/filters:focal(393x413:553x573)/cdn.vox-cdn.com/uploads/chorus_image/image/60248239/2014_nakazawafish.0.12.jpg"
           className={classes.root}
-        >
-        {menuList}
-            <ButtonGroup fullWidth aria-label="full width outlined button group">
-             <Button onClick={() => makeRows()}>Checkout {orderLength}</Button>
-           </ButtonGroup>
-        </List>
+          />
+          <h2 style={{color:"beige", top: "13%", left: "5%", position: "absolute"}}>
+            Sushi, always the pleasure
+          </h2>
+        </div>
+        <div class="d-flex justify-content-center align-items-baseline">
+          <hr/>
+          <List
+            subheader={
+              <ListSubheader component="div" id="nested-list-subheader">
+                Menu
+              </ListSubheader>
+            }
+            className={classes.root}
+          >
+          {menuList}
+          <ButtonGroup style={{
+          backgroundColor:"#3f51b5",
+          position:"fixed",
+          bottom:"0"
+        }}fullWidth aria-label="full width outlined button group">
+         <Button style={{color:"white"}} onClick={() => makeRows()}>Checkout {orderLength}</Button>
+        </ButtonGroup>
+          
+          </List>
+        </div>
+        <br/>
       </div>
     );
   } else {
     // if cart state is true, it will render cart page
     return (
-      <Cart setOrderLength={setOrderLength} setCart={()=> setCart()} order={orderList} rows={rows} />
+        <Cart setRows={setRows} setOrderLength={setOrderLength} orderLength={orderLength} setCart={()=> setCart()} order={orderList} rows={rows} />
     );
   }
 }
