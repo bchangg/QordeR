@@ -64,7 +64,6 @@ export default function MenuEdit(props) {
       setError('');
       axios.post(`/api/${props.restaurantId}/menu`, { menu: menuState })
         .then((response) => {
-          console.log(response);
           alert("Menu has been updated")
         })
         .catch((error) => {

@@ -22,33 +22,40 @@ const useStyles = makeStyles(theme => ({
 
 const orderList = {};
 export default function Menu(props) {
-  const [menu, setMenu] = useState("")
+  const [menu, setMenu] = useState([])
   const [state, setState] = useState("");
   const [rows, setRows] = useState([])
   const [cart, setCart] = React.useState(false);
   const [orderLength, setOrderLength] = React.useState(0);
   const classes = useStyles();
+
   function createData(name, quantity, price) {
     return { name, quantity, price };
   }
-  const sendOrder = function(order){
-    // let table_id = window.location.href.slice(22)
-    axios.post(`/${props.tableId}/order`, {order: order})
-      .then(()=>{
+
+  useEffect(() => {
+    axios.get('/api/1/menu')
+      .then((response) => {
+        setMenu(response.data)
+      })
+  }, [])
+
+  const sendOrder = function(order) {
+    axios.post(`/${props.tableId}/order`, { order: order })
+      .then(() => {
         navigate(`/order/${props.tableId}`);
-        console.log('reached')
       })
   }
   const makeRows = function() {
     const items = Object.keys(orderList);
     let quantity = [];
     let price = [];
-    
+
     for (let item in orderList) {
       quantity.push(orderList[item].quantity)
       price.push(orderList[item].price)
     }
-    console.log("quantity",quantity)
+    console.log("quantity", quantity)
     let tempRows = [];
     for (let i = 0; i < items.length; i++) {
       tempRows.push(createData(items[i], quantity[i], price[i]));
@@ -56,11 +63,6 @@ export default function Menu(props) {
     setRows([...tempRows])
     setCart(true)
   }
-  useEffect(()=>{
-    axios.get('/api/1/menu').then((response)=>{
-      setMenu(response.data)
-    })
-  },[])
   // renders out a list of menu categories and items
   // data structure is located in fakeDb/menu.js
   // expects menu to be something like:
@@ -73,10 +75,10 @@ export default function Menu(props) {
   //   ]
   // }
   // can update the items to just old an array of ids later
-  if(menu){
-  const menuList = menu.map((entry, index) => {
-    return (
-      <Fragment>
+  if (menu) {
+    const menuList = menu.map((entry, index) => {
+      return (
+        <Fragment>
         <ListItem key={index} button onClick={() =>
           state === entry.category ? setState(null) : setState(entry.category)
         }>
@@ -103,12 +105,12 @@ export default function Menu(props) {
           })}
         </Collapse>
       </Fragment>
-    )
-  })
-  if (!cart) {
-    // if Cart state is false it will render menu list
-    return (
-      <div>
+      )
+    })
+    if (!cart) {
+      // if Cart state is false it will render menu list
+      return (
+        <div>
         <div>
           <img
           style={{width: "100%", height: "100%", zindex:-1, position:"relative"}}
@@ -138,18 +140,18 @@ export default function Menu(props) {
         }}fullWidth aria-label="full width outlined button group">
          <Button style={{color:"white"}} onClick={() => makeRows()}>Checkout {orderLength}</Button>
         </ButtonGroup>
-          
+
           </List>
         </div>
         <br/>
       </div>
-    );
-  } else {
-    // if cart state is true, it will render cart page
-    return (
+      );
+    } else {
+      // if cart state is true, it will render cart page
+      return (
         <Cart setRows={setRows} setOrderLength={setOrderLength} orderLength={orderLength} setCart={()=> setCart()} order={orderList} rows={rows} sendOrder={(order)=>sendOrder(order)}/>
-    );
-  }
+      );
+    }
   } else {
     return (<p></p>)
   }
