@@ -1,14 +1,19 @@
 import React from "react";
-import Restaurant from "components/Restaurant/index.js";
+import Restaurant from "components/Restaurant/index";
 import Order from "components/Order";
 import Admin from "components/Admin";
 import Application from "components/Application";
+import Orderstatus from "components/Menu/Orderstatus";
+import Loader from "components/loading_test";
 
 const routes = {
-  "/": () => <Application />,
-  "/restaurant/:id": ({ id }) => <Restaurant id={id}/>,
   "/:restoId/order/:id": ({ restoId, id }) => <Order restoId={restoId} id={id}/>,
-  "/admin": () => <Admin />
+  "/admin/:restoId": ({ restoId }) => <Restaurant restoId={restoId}/>,
+  "/admin": () => <Admin />,
+  "/order/:tableId": ({tableId}) => <Orderstatus tableId={tableId}/>,
+  "/load": () => <Loader/>,
+  "/:tableId": ({tableId}) => <Application tableId={tableId}/>
 };
+
 
 export default routes;

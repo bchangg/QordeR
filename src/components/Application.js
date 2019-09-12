@@ -2,6 +2,7 @@ import React from "react";
 import TopBar from 'components/TopBar';
 import Menu from 'components/Menu';
 import {makeStyles} from "@material-ui/core/styles";
+const axios = require('axios');
 import 'typeface-roboto';
 
 const useStyles = makeStyles(theme => ({
@@ -10,19 +11,15 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-
-
-export default function Application() {
+export default function Application(props) {
+  axios.get(`/${props.tableId}`).then(()=>{console.log("Success")});
   return (
     <div>
-      <TopBar title="Restaurant Name"/>
+      <TopBar title="Miku" tableId={props.tableId}/>
       <br/>
-      <br/>
-      <br/>
-      {/* <img
-      src="https://cdn.vox-cdn.com/thumbor/CHCiw8xdogCBnB12TSRvpo4VZMY=/0x0:1000x667/1200x900/filters:focal(393x413:553x573)/cdn.vox-cdn.com/uploads/chorus_image/image/60248239/2014_nakazawafish.0.12.jpg"
-      /> */}
-      <Menu/>
+      <div>
+        <Menu tableId={props.tableId}/>
+      </div>
     </div>
   )
 }

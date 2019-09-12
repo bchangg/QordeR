@@ -1,7 +1,8 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles'
-import { FormControl, TextField, Button } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
 import { navigate } from 'hookrouter';
+import { useCookies } from 'react-cookie';
 import TopBar from 'components/TopBar';
 import axios from 'axios';
 
@@ -24,6 +25,14 @@ export default function Admin() {
   const [passwordError, setPasswordError] = useState();
   const [loginError, setLoginError] = useState();
 
+  const [cookies, setCookie] = useCookies(['user']);
+
+  useEffect(() => {
+    if (cookies.user) {
+      navigate(`/admin/${cookies.user}`);
+    }
+  }, [cookies.user])
+
   function validate() {
     if (!email) {
       setEmailError("Please enter your email!")
@@ -38,10 +47,15 @@ export default function Admin() {
     setLoginError("");
 
     login(email, password)
-    .then((response) => {
-      setLoginError("Incorrect username or password!")
-      navigate(response.data);
-    })
+      .then((response) => {
+        setLoginError("Incorrect username or password!")
+        console.log(response.data.restaurantId);
+        if (response.data !== "error") {
+          setCookie('user', response.data.restaurantId);
+        } else {
+          navigate(`/admin`);
+        }
+      })
   }
 
   function login(email, password) {
